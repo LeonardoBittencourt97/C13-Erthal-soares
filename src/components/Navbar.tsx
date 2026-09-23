@@ -81,17 +81,17 @@ export function Navbar() {
 
   return (
     <>
-      {/* 1. LOGO MOBILE FIXA SEPARADA - TAMANHO DOBRADO CONFORME DIRETRIZ C12 */}
-      <div className="lg:hidden fixed top-2 left-3 sm:left-4 z-50 pointer-events-none">
+      {/* 1. LOGO MOBILE FIXA SEPARADA - ALINHADA AO TOPO COM MÁXIMA NITIDEZ */}
+      <div className="lg:hidden fixed top-1 sm:top-1.5 left-2.5 sm:left-4 z-50 pointer-events-none">
         <Link href="#inicio" className="flex items-center group focus:outline-none pointer-events-auto">
-          <div className="relative h-20 w-52 sm:w-60 transition-transform duration-300 group-hover:scale-105">
+          <div className="relative h-10 sm:h-12 w-36 sm:w-44 transition-transform duration-300 group-hover:scale-105">
             <Image
               src={currentLogo}
               alt={OFFICE_INFO.name}
               fill
               priority
               className="object-contain object-left drop-shadow-md"
-              sizes="240px"
+              sizes="200px"
             />
           </div>
         </Link>
@@ -99,17 +99,17 @@ export function Navbar() {
 
       {/* 2. BARRA DE NAVEGAÇÃO PRINCIPAL */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 w-full max-w-full z-40 transition-all duration-300 overflow-x-clip ${
           isScrolled
-            ? "bg-[var(--bg-primary)]/95 backdrop-blur-md shadow-sm border-b border-[var(--border-subtle)]/25 py-2 sm:py-2.5"
-            : "bg-transparent py-3 sm:py-3.5"
+            ? "bg-[var(--bg-primary)]/95 backdrop-blur-md shadow-sm border-b border-[var(--border-subtle)]/25 py-1.5 sm:py-2.5"
+            : "bg-transparent py-2.5 sm:py-3.5"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="relative min-h-[2.75rem] sm:min-h-[3rem] flex items-center justify-between gap-3 sm:gap-4">
+        <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
+          <div className="relative min-h-[2.5rem] sm:min-h-[3rem] flex items-center justify-between gap-2 sm:gap-4">
             
             {/* Espaçador Mobile para proteger a área da logo sem afetar os botões */}
-            <div className="lg:hidden w-44 sm:w-52 flex-shrink-0 pointer-events-none" />
+            <div className="lg:hidden w-36 sm:w-44 flex-shrink pointer-events-none" />
 
             {/* Logo Desktop: Desacoplada e ampliada para dobro de tamanho */}
             <div className="hidden lg:flex items-center justify-start relative flex-shrink-0 w-64 xl:w-72 h-12 pointer-events-none">
@@ -295,16 +295,16 @@ export function Navbar() {
             </nav>
 
             {/* Ações à Direita: Tema + WhatsApp + Menu Mobile */}
-            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
               <ThemeToggle />
 
               <a
                 href={OFFICE_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-pill bg-[#25D366] hover:bg-[#20ba59] hover:scale-105 text-white transition-all duration-300 gap-1.5 sm:gap-2 shadow-sm text-xs sm:text-sm px-3.5 sm:px-5 py-2 sm:py-2.5 flex-shrink-0 cursor-pointer"
+                className="btn-pill bg-[#25D366] hover:bg-[#20ba59] hover:scale-105 text-white transition-all duration-300 gap-1 sm:gap-2 shadow-sm text-xs sm:text-sm px-2.5 sm:px-5 py-1.5 sm:py-2.5 flex-shrink-0 cursor-pointer"
               >
-                <WhatsAppIcon className="w-4 h-4 text-white" />
+                <WhatsAppIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                 <span className="hidden sm:inline">WhatsApp</span>
                 <span className="sm:hidden text-xs">Whats</span>
               </a>
@@ -312,14 +312,14 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`lg:hidden flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl border transition-colors flex-shrink-0 cursor-pointer ${
+                className={`lg:hidden flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl border transition-colors flex-shrink-0 cursor-pointer ${
                   !isScrolled
                     ? "border-white/30 bg-black/40 backdrop-blur-md text-white hover:bg-black/60"
                     : "border-[var(--border-subtle)]/40 bg-[var(--bg-card)] text-[var(--text-main)] hover:bg-[var(--bg-secondary)]"
                 }`}
                 aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu de navegação"}
               >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
               </button>
             </div>
           </div>
@@ -328,8 +328,8 @@ export function Navbar() {
 
       {/* 3. MENU MOBILE DRAWER (Off-canvas enxuto com Accordions) */}
       <div
-        className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ${
-          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 overflow-hidden ${
+          mobileMenuOpen ? "opacity-100 pointer-events-auto visible" : "opacity-0 pointer-events-none invisible"
         }`}
       >
         <div
@@ -337,19 +337,19 @@ export function Navbar() {
           onClick={closeMobileMenu}
         />
         <div
-          className={`fixed top-0 right-0 bottom-0 w-[84vw] max-w-sm bg-[var(--bg-primary)] border-l border-[var(--border-subtle)]/30 p-6 flex flex-col justify-between shadow-2xl transition-transform duration-300 overflow-y-auto ${
+          className={`fixed top-0 right-0 bottom-0 w-[80vw] max-w-xs bg-[var(--bg-primary)] border-l border-[var(--border-subtle)]/30 p-5 sm:p-6 flex flex-col justify-between shadow-2xl transition-transform duration-300 overflow-y-auto ${
             mobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           <div>
             <div className="flex items-center justify-between pb-4 border-b border-[var(--border-subtle)]/25">
-              <div className="relative h-14 w-48">
+              <div className="relative h-10 w-40">
                 <Image
                   src={drawerLogo}
                   alt={OFFICE_INFO.name}
                   fill
                   className="object-contain object-left"
-                  sizes="200px"
+                  sizes="160px"
                 />
               </div>
               <button
